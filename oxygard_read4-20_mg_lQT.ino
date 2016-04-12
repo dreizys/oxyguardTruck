@@ -1,6 +1,8 @@
 /*
   AnalogReadSerial
- for 4-20 mA sensor and use of 12 seq connected vessels
+  Reads an analog input on pin 0, prints the result to the serial monitor.
+  Graphical representation is available using serial plotter (Tools > Serial Plotter menu)
+  Attach the center pin of a potentiometer to pin A0, and the outside pins to +5V and ground.
 
   This example code is in the public domain.
 */
@@ -29,13 +31,13 @@ void loop() {
  
     float voltage = sensorValue / 204 ; //round 204,6
 
-    float mg_l_v =  8.02 * voltage  - 7.49; //R=234 Factor = 8.02; correction -7.49
+    float mg_l_v =  8.02 * voltage  - 7.49; //R=234
 
     Serial.print(i);
     Serial.print(';');
     Serial.print(mg_l_v);
 
-    digitalWrite(i+2, HIGH); //relay off
+    digitalWrite(i+1, HIGH); //relay off
     
     //if (i == count_con) i = 1; // оказалось, что и без нее все работает
   }
